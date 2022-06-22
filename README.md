@@ -1,12 +1,17 @@
 ## Start
 
 
-### Create kind cluster
 
-https://kind.sigs.k8s.io/
+### Create a k3d cluster
 
-Example:
+Install k3d
 
+`wget -q -O - https://raw.githubusercontent.com/rancher/k3d/main/install.sh | bash`
 
-`kind create cluster --config=k8s/kind.yml --name=limao3`
-`kubectl config use-context kind-limao3`
+now create a cluster
+
+`k3d cluster create`
+
+and run
+
+`kubectl apply -f k8s/deployment`
