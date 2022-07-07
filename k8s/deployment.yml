@@ -16,7 +16,29 @@ spec:
     spec:
       containers:
         - name: goserver
-          image: "ffelipelimao/k8-test-5.2:latest"
+          image: "ffelipelimao/k8-test-6:latest"
+          startupProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            periodSeconds: 3
+            failureThreshold: 1
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            periodSeconds: 3
+            failureThreshold: 1
+            # initialDelaySeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            periodSeconds: 5
+            failureThreshold: 1
+            timeoutSeconds: 1
+            successThreshold: 1
+            # initialDelaySeconds: 15
           envFrom:
             - configMapRef:
                 name: goserver-env
