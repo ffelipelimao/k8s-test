@@ -17,6 +17,13 @@ spec:
       containers:
         - name: goserver
           image: "ffelipelimao/k8-test-6:latest"
+          resources:
+            requests:
+              cpu: "0.3"
+              memory: 20Mi
+            limits:
+              cpu: "0.3"
+              memory: 25Mi
           startupProbe:
             httpGet:
               path: /healthz
